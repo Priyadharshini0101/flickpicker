@@ -277,6 +277,8 @@
     <main>
       <section id="filter-section">
         <h2>Filter Movies</h2>
+        <div class="filter">
+        <label for="genre-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Genre</label>
         <select id="genre-filter">
           <option value="">All Genres</option>
           <option value="action">Action</option>
@@ -294,15 +296,24 @@
           <option value="biography">Biography</option>
           <option value="historical">Historical</option>
         </select>
+        </div>
+        <div class="filter">
+        <label for="year-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Year</label>
         <select id="year-filter">
           <option value="">All Years</option>
           <!-- Options will be populated dynamically -->
         </select>
+        </div>
+        <div class="filter">
+        <label for="sort-order" class="d-flex gap-2 flex-wrap mx-2">Filter by Title</label>
         <select id="sort-order">
           <option value="title">Title</option>
           <option value="year">Year</option>
           <option value="runtime">Runtime</option>
         </select>
+        </div>
+        <div class="filter">
+        <label for="rating-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Rating</label>
         <select id="rating-filter">
           <option value="">All Ratings</option>
           <option value="G">G</option>
@@ -311,14 +322,21 @@
           <option value="R">R</option>
           <option value="NC-17">NC-17</option>
         </select>
+        </div>
+        <div class="filter">
+        <label for="director-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Director</label>
         <select id="director-filter">
           <option value="">All Directors</option>
           <!-- Options will be populated dynamically -->
         </select>
+        </div>
+        <div class="filter">
+        <label for="cast-member-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Cast Members</label>
         <select id="cast-member-filter">
           <option value="">All Cast Members</option>
           <!-- Options will be populated dynamically -->
         </select>
+        </div>
         <!-- Add more filters as needed -->
       </section>
 
@@ -416,6 +434,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              tabindex="-1"
             ></button>
           </div>
           <div class="modal-body">
@@ -427,6 +446,7 @@
                   class="form-control"
                   name="title"
                   id="title"
+                  tabindex="-1"
                   required
                 />
               </div>
@@ -440,6 +460,7 @@
                     class="form-control"
                     name="dateWatched"
                     id="dateWatched"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -450,6 +471,7 @@
                     class="form-control"
                     name="year"
                     id="year"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -461,7 +483,8 @@
                     type="text"
                     class="form-control"
                     name="category"
-                    id="category"
+                    id="category" 
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -473,6 +496,7 @@
                     type="url"
                     class="form-control"
                     name="trailerLink"
+                    tabindex="-1"
                     id="trailerLink"
                     required
                   />
@@ -486,6 +510,7 @@
                     class="form-control"
                     name="movieLink"
                     id="movieLink"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -498,6 +523,7 @@
                     class="form-control"
                     name="modernTrailerLink"
                     id="modernTrailerLink"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -512,6 +538,7 @@
                     class="form-control"
                     name="requestedBy"
                     id="requestedBy"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -522,6 +549,7 @@
                     class="form-control"
                     name="language"
                     id="language"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -531,6 +559,7 @@
                     class="form-select"
                     name="subtitles"
                     id="subtitles"
+                    tabindex="-1"
                     required
                   >
                     <option value="true">Yes</option>
@@ -543,6 +572,7 @@
                   <label for="imdbLink" class="form-label">IMDB Link</label>
                   <input
                     type="url"
+                    tabindex="-1"
                     class="form-control"
                     name="imdbLink"
                     id="imdbLink"
@@ -555,6 +585,7 @@
                     type="url"
                     class="form-control"
                     name="tmdbLink"
+                    tabindex="-1"
                     id="tmdbLink"
                     required
                   />
@@ -565,14 +596,144 @@
                   type="button"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
+                  tabindex="-1"
                 >
                   Close
                 </button>
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success" tabindex="-1">
                   Save Movie
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="detailsModal"
+      tabindex="-1"
+      aria-labelledby="detailsModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailsModalLabel">Details</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              tabindex="-1"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex">
+              <div>
+                <img id="details-img" class="list-img-top">
+              </div>
+              <div class="mb-3">
+                <h4 id="details-title"></h4>
+                <div class="d-flex gap-2 my-2">
+                  <h6 id="details-year" class="card-text"></h6>
+                  <h6 id="details-category" class="card-text"></h6>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-1">
+              <div class="col-6">
+                <div class="d-flex gap-2 my-2">
+                  <small class="text-muted">Language</small>
+                  <h6 id="details-language" class="card-text"></h6>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex gap-2 my-2">
+                  <small class="text-muted">Date Watched</small>
+                  <h6 id="details-date-watched" class="card-text"></h6>
+                </div>
+              </div>
+            </div>
+             <div class="row mb-1">     
+                <div class="col-6">
+                  <div class="d-flex gap-2 my-2">
+                    <small class="text-muted">Requested By</small>
+                    <h6 id="details-requested-by" class="card-text"></h6>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="d-flex gap-2 my-2">
+                    <small class="text-muted">Subtitles</small>
+                    <h6 id="details-subtitles" class="card-text"></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3"> 
+                <div class="col-6">
+                  <div class="d-flex gap-2 my-2">
+                    <small class="text-muted">Runtime</small>
+                    <h6 id="details-runtime" class="card-text"></h6>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="d-flex gap-2 my-2">
+                    <small class="text-muted">Ratings</small>
+                    <h6 id="details-ratings" class="card-text"></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <h6 class="font-weight-bold">Description</h6>
+                  <p id="details-description" class="text-muted font-weight-bold"></p>
+                </div>
+              </div>
+              <div class="row mb-3">
+                 <div class="col-12">
+                  <h6 class="fw-bold">External Links</h6>
+                  <div class="d-flex flex-wrap gap-2">
+                    <a href="#" target="_blank" id="details-imdb" class="badge bg-secondary text-white text-decoration-none p-2 cursor-pointer">
+                      IMDB
+                    </a>
+                    <a href="#" target="_blank" id="details-tmdb" class="badge bg-secondary text-white text-decoration-none p-2 cursor-pointer">
+                      TMDB
+                    </a>
+                    <a href="#" target="_blank" id="details-omdb" class="badge bg-secondary text-white text-decoration-none p-2 cursor-pointer">
+                      OMDB
+                    </a>
+                    <a href="#" target="_blank" id="details-movie-link" class="badge bg-secondary text-white text-decoration-none p-2 cursor-pointer">
+                      Movie Link
+                    </a>
+                    <a href="#" target="_blank" id="details-modern-trailer-link" class="badge bg-secondary text-white text-decoration-none p-2 cursor-pointer">
+                      Modern Trailer Link
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <h6 class="font-weight-bold">Trailer</h6>
+                  <div class="ratio ratio-16x9">
+                  <iframe
+                    id="details-trailer"
+                    class="w-100"
+                    height="315"
+                    src=""
+                    title="YouTube Trailer"
+                    allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                  </iframe>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              tabindex="-1">
+              Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -593,6 +754,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              tabindex="-1"
             ></button>
           </div>
           <div class="modal-body">
@@ -601,6 +763,7 @@
                 <label for="username" class="form-label">Username</label>
                 <input
                   type="text"
+                  tabindex="-1"
                   class="form-control"
                   id="username"
                   required
@@ -612,13 +775,15 @@
                   <input
                     type="password"
                     class="form-control"
+                    tabindex="-1"
                     id="password"
                     required
                   />
                   <button
                     type="button"
-                    class="btn btn-outline-secondary"
+                    class="btn btn-outline-dark"
                     id="togglePassword"
+                    tabindex="-1"
                   >
                     <i class="fas fa-eye" id="eyeIcon"></i>
                   </button>
@@ -630,8 +795,8 @@
                   <a
                     class="text-black text-decoration-underline"
                     href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#signupModal"
+                    onclick="openModal('loginModal', 'signupModal')"
+                    tabindex="-1"
                   >
                     Create new account
                   </a>
@@ -640,11 +805,20 @@
             </form>
           </div>
 
-          <!-- Sign Up Modal -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="loginBtn" tabindex="-1">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!-- Sign Up Modal -->
           <div
             class="modal fade"
             id="signupModal"
             tabindex="-1"
+            aria-labelledby="signupModalLabel"
             aria-hidden="true"
           >
             <div class="modal-dialog">
@@ -655,6 +829,7 @@
                     type="button"
                     class="btn-close"
                     data-bs-dismiss="modal"
+                    tabindex="-1"
                     aria-label="Close"
                   ></button>
                 </div>
@@ -667,7 +842,8 @@
                       <input
                         type="text"
                         class="form-control"
-                        id="newUsername"
+                        id="newUsername" 
+                        tabindex="-1"
                         required
                       />
                     </div>
@@ -677,6 +853,7 @@
                         type="email"
                         class="form-control"
                         id="newEmail"
+                        tabindex="-1"
                         required
                       />
                     </div>
@@ -687,7 +864,8 @@
                       <input
                         type="password"
                         class="form-control"
-                        id="newPassword"
+                        id="newPassword" 
+                        tabindex="-1"
                         required
                       />
                     </div>
@@ -699,26 +877,36 @@
                         type="password"
                         class="form-control"
                         id="confirmPassword"
+                        tabindex="-1"
                         required
                       />
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                      Sign Up
-                    </button>
+                    <div
+                  class="d-flex justify-content-center align-items-center gap-1 my-3"
+                >
+                  <p class="mb-0 text-black">Already have an account?</p>
+                  <a
+                    class="text-black text-decoration-underline"
+                    href="#"
+                    onclick="openModal('signupModal', 'loginModal')"
+                    tabindex="-1"
+                  >
+                    Login
+                  </a>
+                </div>
+                    
                   </form>
                 </div>
+                 <div class="modal-footer">
+         
+                    <button type="submit" class="btn btn-primary" tabindex="-1">
+                      Sign Up
+                    </button>
+                    </div>
               </div>
             </div>
           </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="loginBtn">
-              Login
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
     <div
       class="modal fade"
       id="profileModal"
@@ -742,10 +930,10 @@
             <div class="d-flex align-items-center mb-4">
               <div class="profile-avatar me-3">
                 <div
-                  class="rounded-circle bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center"
+                  class="rounded-circle bg-light bg-opacity-25 d-flex align-items-center justify-content-center"
                   style="width: 100px; height: 100px"
                 >
-                  <i class="fas fa-user fa-3x text-secondary"></i>
+                  <i class="fas fa-user fa-3x text-dark"></i>
                 </div>
               </div>
               <div class="profile-info">
@@ -937,9 +1125,9 @@
                         class="d-flex flex-wrap gap-2"
                         id="preferredLanguages"
                       >
-                        <span class="badge bg-secondary">English</span>
-                        <span class="badge bg-secondary">Japanese</span>
-                        <span class="badge bg-secondary">Korean</span>
+                        <span class="badge bg-light">English</span>
+                        <span class="badge bg-light">Japanese</span>
+                        <span class="badge bg-light">Korean</span>
                       </div>
                     </div>
                     <div class="mb-3">
@@ -1218,6 +1406,18 @@
           console.error("Form with id 'add-movie-form' not found.");
         }
       });
+    </script>
+    <script>
+  function openModal(currentId, targetId) {
+    const current = bootstrap.Modal.getInstance(document.getElementById(currentId));
+    if (current) current.hide();
+
+   setTimeout(() => {
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+    const target = new bootstrap.Modal(document.getElementById(targetId));
+    target.show();
+  }, 100); // wait for hide animation to complete
+  }
     </script>
     <!-- Service Worker (last script) -->
     <script type="module" src="../../../service-worker.js"></script>
