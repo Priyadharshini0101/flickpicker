@@ -143,7 +143,14 @@ window.showMovieDetails = function(movieId) {
     if (!currentMovie) return;
 
     const trailerUrl = currentMovie[0].trailerLink || "";
-    const videoId = trailerUrl.split("/").pop();
+   
+    function extractYouTubeVideoId(url) {
+      const regex = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&?/]+)/;
+      const match = url.match(regex);
+      return match ? match[1] : null;
+    }
+
+    const videoId = extractYouTubeVideoId(trailerUrl);
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
     const fallbackImage = './assets/placeholder.jpg';
 
