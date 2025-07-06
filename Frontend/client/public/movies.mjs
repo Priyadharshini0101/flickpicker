@@ -143,9 +143,8 @@ window.showMovieDetails = function(movieId) {
     if (!currentMovie) return;
 
     const trailerUrl = currentMovie[0].trailerLink || "";
-    let embedUrl = "";
     const videoId = trailerUrl.split("/").pop();
-    embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    const embedUrl = `https://www.youtube.com/embed/${videoId}`;
     const fallbackImage = './assets/placeholder.jpg';
 
     document.getElementById('details-img').src = fallbackImage;
