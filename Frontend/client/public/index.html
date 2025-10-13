@@ -283,6 +283,8 @@
     <main>
       <section id="filter-section">
         <h2>Filter Movies</h2>
+        <div class="filter">
+        <label for="genre-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Genre</label>
         <select id="genre-filter">
           <option value="">All Genres</option>
           <option value="action">Action</option>
@@ -300,15 +302,24 @@
           <option value="biography">Biography</option>
           <option value="historical">Historical</option>
         </select>
+        </div>
+        <div class="filter">
+        <label for="year-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Year</label>
         <select id="year-filter">
           <option value="">All Years</option>
           <!-- Options will be populated dynamically -->
         </select>
+        </div>
+        <div class="filter">
+        <label for="sort-order" class="d-flex gap-2 flex-wrap mx-2">Filter by Title</label>
         <select id="sort-order">
           <option value="title">Title</option>
           <option value="year">Year</option>
           <option value="runtime">Runtime</option>
         </select>
+        </div>
+        <div class="filter">
+        <label for="rating-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Rating</label>
         <select id="rating-filter">
           <option value="">All Ratings</option>
           <option value="G">G</option>
@@ -317,14 +328,21 @@
           <option value="R">R</option>
           <option value="NC-17">NC-17</option>
         </select>
+        </div>
+        <div class="filter">
+        <label for="director-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Director</label>
         <select id="director-filter">
           <option value="">All Directors</option>
           <!-- Options will be populated dynamically -->
         </select>
+        </div>
+        <div class="filter">
+        <label for="cast-member-filter" class="d-flex gap-2 flex-wrap mx-2">Filter by Cast Members</label>
         <select id="cast-member-filter">
           <option value="">All Cast Members</option>
           <!-- Options will be populated dynamically -->
         </select>
+        </div>
         <!-- Add more filters as needed -->
       </section>
 
@@ -422,6 +440,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              tabindex="-1"
             ></button>
           </div>
           <div class="modal-body">
@@ -433,6 +452,7 @@
                   class="form-control"
                   name="title"
                   id="title"
+                  tabindex="-1"
                   required
                 />
               </div>
@@ -446,6 +466,7 @@
                     class="form-control"
                     name="dateWatched"
                     id="dateWatched"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -456,6 +477,7 @@
                     class="form-control"
                     name="year"
                     id="year"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -467,7 +489,8 @@
                     type="text"
                     class="form-control"
                     name="category"
-                    id="category"
+                    id="category" 
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -479,6 +502,7 @@
                     type="url"
                     class="form-control"
                     name="trailerLink"
+                    tabindex="-1"
                     id="trailerLink"
                     required
                   />
@@ -492,6 +516,7 @@
                     class="form-control"
                     name="movieLink"
                     id="movieLink"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -504,6 +529,7 @@
                     class="form-control"
                     name="modernTrailerLink"
                     id="modernTrailerLink"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -518,6 +544,7 @@
                     class="form-control"
                     name="requestedBy"
                     id="requestedBy"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -528,6 +555,7 @@
                     class="form-control"
                     name="language"
                     id="language"
+                    tabindex="-1"
                     required
                   />
                 </div>
@@ -537,6 +565,7 @@
                     class="form-select"
                     name="subtitles"
                     id="subtitles"
+                    tabindex="-1"
                     required
                   >
                     <option value="true">Yes</option>
@@ -549,6 +578,7 @@
                   <label for="imdbLink" class="form-label">IMDB Link</label>
                   <input
                     type="url"
+                    tabindex="-1"
                     class="form-control"
                     name="imdbLink"
                     id="imdbLink"
@@ -561,6 +591,7 @@
                     type="url"
                     class="form-control"
                     name="tmdbLink"
+                    tabindex="-1"
                     id="tmdbLink"
                     required
                   />
@@ -571,10 +602,11 @@
                   type="button"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
+                  tabindex="-1"
                 >
                   Close
                 </button>
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success" tabindex="-1">
                   Save Movie
                 </button>
               </div>
