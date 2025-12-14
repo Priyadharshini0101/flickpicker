@@ -56,7 +56,11 @@ function handleMovieInteraction(event) {
     if (target.classList.contains("vote-btn")) {
         handleVote(movieId, target.dataset.vote);
     } else if (target.classList.contains("add-to-playlist-btn")) {
-        addToPlaylist(movieId);
+        const button = target.closest('.add-to-playlist-btn') || target;
+        const id = button.dataset.movieId;
+        const title = button.dataset.movieTitle;
+        const poster = button.dataset.moviePoster;
+        addToPlaylist(id, title, poster);
     }
 }
 
@@ -126,7 +130,9 @@ function createMovieCardHTML(movie) {
                         </div>
                         <button type="button" 
                             class="btn btn-sm btn-primary add-to-playlist-btn" 
-                            onclick="addToPlaylist(${movie.id}, '${movie.title}', '${movie.imageUrl}')"
+                            data-movie-id="${movie.id}"
+                            data-movie-title="${movie.title}"
+                            data-movie-poster="${movie.imageUrl || ''}"
                             ${state.currentUser ? '' : 'disabled'}>
                             <i class="fas fa-plus"></i> Add to Playlist
                         </button>
@@ -207,8 +213,11 @@ function displayMovies(movieList, previousFilteredMovies = null) {
 
 async function loadMovies() {
     let movies = [];
-
+    const spinner = document.getElementById('loading-spinner');
+    const movieTable = document.getElementById('movie-table');
     try {
+        if (spinner) spinner.style.display = 'inline-block';
+        if (movieTable) movieTable.style.display = 'none';
         movies = await fetchMovies();
         if (movies && movies.length > 0) {
             localStorage.setItem("moviesList", JSON.stringify(movies));
@@ -223,6 +232,10 @@ async function loadMovies() {
     } catch (error) {
         console.error('Error fetching movies:', error);
         showToast('Failed to fetch movies. Please try again later.', 'error');
+     }finally {
+    //     // Hide spinner and show movie table
+        if (spinner) spinner.style.display = 'none';
+        if (movieTable) movieTable.style.display = 'flex';
     }
 
     try {
